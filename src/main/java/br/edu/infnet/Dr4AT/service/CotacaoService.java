@@ -1,5 +1,6 @@
 package br.edu.infnet.Dr4AT.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,15 @@ public class CotacaoService {
 	}
 
 	public List<Cotacao> findCotacoes(String keyword) {
-		return (List<Cotacao>) cr.searchList(ps.findIdByKeyword(keyword));
+		List<Cotacao> cotacoes = new ArrayList<Cotacao>();
+		List<Cotacao> c = cr.findAll();
+		for(Cotacao cos: c) {
+			if(cos.getProduto().getId() == ps.findIdByKeyword(keyword)) {
+				cotacoes.add(cos) ;
+			}
+		}
+		System.out.println(cotacoes);
+		return cotacoes;
 	}
+	
 }

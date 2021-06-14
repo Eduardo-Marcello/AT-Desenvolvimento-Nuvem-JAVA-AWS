@@ -15,11 +15,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-public class Produto implements Serializable{
-	
+public class Produto implements Serializable {
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_produto")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_produto")
 	private Integer id;
 	@Column(name = "codigo_produto")
 	private int codigoProduto;
@@ -27,18 +27,18 @@ public class Produto implements Serializable{
 	private String nomeProduto;
 	@Column(name = "classificacao")
 	private String classificacao;
-	
-	 @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	    private Set<Cotacao> cotacoes;
-	 
-	 public Set<Cotacao> getEmails() {
-	        return cotacoes;
-	    }
-	
-	public Produto() {
-		
+
+	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Cotacao> cotacoes;
+
+	public Set<Cotacao> getEmails() {
+		return cotacoes;
 	}
-	
+
+	public Produto() {
+
+	}
+
 	public Produto(int codigoProduto, String nomeProduto, String classificacao) {
 		this.codigoProduto = codigoProduto;
 		this.nomeProduto = nomeProduto;
@@ -82,6 +82,5 @@ public class Produto implements Serializable{
 		return "Produtos [id=" + id + ", codigoProduto=" + codigoProduto + ", nomeProduto=" + nomeProduto
 				+ ", classificacao=" + classificacao + "]";
 	}
-	
-	
+
 }
