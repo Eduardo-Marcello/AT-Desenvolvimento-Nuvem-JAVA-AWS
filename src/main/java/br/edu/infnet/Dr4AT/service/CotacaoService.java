@@ -27,7 +27,7 @@ public class CotacaoService {
 		return this.cr.save(cotacao);
 	}
 	
-	public void excluir(Integer id) {
+	public void excluir(Short id) {
 		this.cr.deleteById(id);
 	}
 
@@ -35,11 +35,10 @@ public class CotacaoService {
 		List<Cotacao> cotacoes = new ArrayList<Cotacao>();
 		List<Cotacao> c = cr.findAll();
 		for(Cotacao cos: c) {
-			if(cos.getProduto().getId() == ps.findIdByKeyword(keyword)) {
+			if(cos.getProduto().getIdProduto() == ps.findIdByKeyword(keyword)) {
 				cotacoes.add(cos) ;
 			}
 		}
-		System.out.println(cotacoes);
 		return cotacoes;
 	}
 	

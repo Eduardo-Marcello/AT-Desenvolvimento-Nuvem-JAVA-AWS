@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.edu.infnet.Dr4AT.negocio.Cotacao;
 
 @Repository
-public interface ICotacaoRepository extends JpaRepository<Cotacao, Integer> {
+public interface ICotacaoRepository extends JpaRepository<Cotacao, Short> {
 	
 }

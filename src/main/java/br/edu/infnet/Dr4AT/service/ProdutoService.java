@@ -27,11 +27,15 @@ public class ProdutoService {
 			return pr.search(keyword);
 		}
 		
-		public Integer findIdByKeyword(String keyword) {
-			return pr.search(keyword).getId();
+		public List<Produto> findListagem(){
+			return pr.findCotacoes();
 		}
 		
-		public void excluir(Integer id) {
+		public Short findIdByKeyword(String keyword) {
+			return pr.search(keyword).getIdProduto();
+		}
+		
+		public void excluir(Short id) {
 			this.pr.deleteById(id);
 		}
 		

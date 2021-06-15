@@ -10,33 +10,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "produtos")
+@NamedQueries({
+	@NamedQuery(name = "Produto.findCotacoes", query = "SELECT p FROM Produto p JOIN FETCH p.cotacoesLista"),
+})
 public class Produto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	private Integer id;
+	private Short idProduto;
 	@Column(name = "codigo_produto")
 	private int codigoProduto;
 	@Column(name = "nome_produto")
 	private String nomeProduto;
 	@Column(name = "classificacao")
 	private String classificacao;
-
+	
 	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Cotacao> cotacoes;
+	private Set<Cotacao> cotacoesLista;
 
 	public Set<Cotacao> getEmails() {
-		return cotacoes;
+		return cotacoesLista;
 	}
 
 	public Produto() {
-
+		
 	}
 
 	public Produto(int codigoProduto, String nomeProduto, String classificacao) {
@@ -45,12 +52,12 @@ public class Produto implements Serializable {
 		this.classificacao = classificacao;
 	}
 
-	public Integer getId() {
-		return id;
+	public Short getIdProduto() {
+		return idProduto;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdProduto(Short id) {
+		this.idProduto = id;
 	}
 
 	public int getCodigoProduto() {
@@ -79,7 +86,7 @@ public class Produto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Produtos [id=" + id + ", codigoProduto=" + codigoProduto + ", nomeProduto=" + nomeProduto
+		return "Produtos [id=" + idProduto + ", codigoProduto=" + codigoProduto + ", nomeProduto=" + nomeProduto
 				+ ", classificacao=" + classificacao + "]";
 	}
 

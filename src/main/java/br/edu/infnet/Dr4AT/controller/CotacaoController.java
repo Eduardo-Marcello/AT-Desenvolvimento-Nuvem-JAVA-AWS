@@ -37,13 +37,14 @@ public class CotacaoController {
 	}
 	
 	@PostMapping("/ListCotacoes")
-	List<Cotacao> findList(String keyword) {
-		List<Cotacao> c = cotacaoService.findCotacoes(keyword);
-		return c;
+	public List<Cotacao> findList(String keyword) {
+//		List<Cotacao> c = cotacaoService.findCotacoes(keyword);
+//		System.out.println(c);
+		return cotacaoService.findCotacoes(keyword);
 	}
 	
 	@DeleteMapping(value = "/deletaCotacao/{id}")
-	public void excluir(@PathVariable Integer id) {
+	public void excluir(@PathVariable Short id) {
 		cotacaoService.excluir(id);	
 	}
 }

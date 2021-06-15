@@ -1,5 +1,7 @@
 package br.edu.infnet.Dr4AT.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +27,18 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/registraProduto")
-	Produto registra(int codigoProduto, String nomeProduto, String classificacao) {
+	public Produto registra(int codigoProduto, String nomeProduto, String classificacao) {
 		return produtoService.registra(codigoProduto,nomeProduto,classificacao);
 	}
 	
+	@PostMapping("/ListaCotacoes")
+	public List<Produto> listagemCotacoes(){
+		
+		return produtoService.findListagem();
+	}
+	
 	@DeleteMapping(value = "/deletaProduto/{id}")
-	public void excluir(@PathVariable Integer id) {
+	public void excluir(@PathVariable Short id) {
 		produtoService.excluir(id);	
 	}
 	

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -21,9 +22,10 @@ public class Cotacao implements Serializable {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "id_cotacao")
-	 private Integer id;
+	 private Short id;
 	 private double preco;
 	 
+	 @JsonIgnore
 	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	 @JoinColumn(name = "id_produto", nullable = false)
 	 private Produto produto;
@@ -37,11 +39,11 @@ public class Cotacao implements Serializable {
 		this.produto = produto;
 	}
 
-	public Integer getId() {
+	public Short getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Short id) {
 		this.id = id;
 	}
 
